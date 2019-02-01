@@ -13,32 +13,28 @@ class Instructor
     @@all
   end
 
-
-
   def self.find_test(student, test_name)
      BoatingTest.all.find{|test| test.test_name == test_name && test.student == student}
   end
 
   def pass_student(student, test_name)
-    if Instructor.find_test(student, test_name)
-       Instructor.find_test(student, test_name).test_status = 'passed'
-       Instructor.find_test(student, test_name)
+    test = Instructor.find_test(student, test_name)
+    if test
+       test.test_status = 'passed'
+       test
     else
     return  BoatingTest.new(student, test_name, test_status = 'passed', self)
     end
   end
 
   def fail_student(student, test_name)
-    if Instructor.find_test(student, test_name)
-       Instructor.find_test(student, test_name).test_status = 'failed'
-       Instructor.find_test(student, test_name)
-      else
+    test = Instructor.find_test(student, test_name)
+    if test
+       test.test_status = 'failed'
+       test
+    else
       return  BoatingTest.new(student, test_name, test_status = 'failed', self)
-      end
-
+    end
   end
-
-
-
 
 end

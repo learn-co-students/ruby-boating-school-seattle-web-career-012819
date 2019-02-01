@@ -18,5 +18,4 @@ attr_accessor :student, :test_name, :test_status, :instructor
   def self.find_test(student, test_name)
      self.all.find{|test| test.test_name == test_name && test.student == student}
   end
-
 end

@@ -1,7 +1,3 @@
-require 'pry'
-require_relative './instructor'
-require_relative './boatingtest'
-
 class Student
   @@all = []
 
@@ -23,8 +19,7 @@ class Student
   def grade_percentage
     total_tests = self.find_tests.count
     passed_tests = self.find_tests.select{|test| test.test_status == "passed"}.count
-     (passed_tests.to_f / total_tests.to_f) * 100
-
+    (passed_tests.to_f / total_tests.to_f) * 100
   end
 
   def self.all
@@ -34,21 +29,4 @@ class Student
   def self.find_student(first_name)
     self.all.find{|student| student.first_name == first_name}
   end
-
-
-
 end
-
-
-spongebob = Student.new("Spongebob")
-patrick= Student.new("Patrick")
-
-puff= Instructor.new("Ms.Puff")
-krabs= Instructor.new("Mr.Krabs")
-
-no_crashing = spongebob.add_boating_test("Don't Crash 101", "pending", puff)
-power_steering_failure = patrick.add_boating_test("Power Steering 202", "failed", puff)
-power_steering_pass = patrick.add_boating_test("Power Steering 201", "passed", krabs)
-
-
-binding.pry
