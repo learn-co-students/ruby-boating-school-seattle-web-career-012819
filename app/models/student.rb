@@ -11,6 +11,7 @@ class Student
 
   def add_boating_test(testname, status, instructor)
     BoatingTest.new(self, testname, status, instructor)
+    
   end
 
   def self.all
